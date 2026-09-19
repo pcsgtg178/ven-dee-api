@@ -2,10 +2,13 @@ import { z } from 'zod';
 
 export const createShiftTodoSchema = z.object({
   body: z.object({
-    shift: z.enum(['morning', 'afternoon', 'night'], {
-      required_error: 'Shift type is required and must be morning, afternoon, or night',
+    shift: z.enum(['morning', 'afternoon', 'night', 'r1', 'r2'], {
+      required_error: 'Shift type is required (morning, afternoon, night, r1, r2)',
     }),
     date: z.string({ required_error: 'Date is required (YYYY-MM-DD)' }),
+    category: z.enum(['black', 'red', 'green']).optional().default('black'),
+    originalOwner: z.string().optional().nullable(),
+    swapNote: z.string().optional().nullable(),
   }),
 });
 
